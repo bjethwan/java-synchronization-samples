@@ -3,9 +3,7 @@ package avoid.using.reentrant.locks;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class BusyTeller extends Teller{
-
-	@Override
+public class InteligentTimeBudgetTeller{
 	
 	public boolean transferMoney(Account fromAcct, Account toAcct, DollarAmount amount, long timeout, TimeUnit unit) 
 			throws InsufficientFundsException, InterruptedException{
@@ -42,7 +40,15 @@ public class BusyTeller extends Teller{
 			
 		} //end of while loop
 	}
-	
+
+	public static long getFixedDelayComponentNanos(long timeout, TimeUnit unit){
+		return timeout/7;
+	}
+
+
+	public static long getRandomDelayModulusNanos(long timeout, TimeUnit unit){
+		return 10;
+	}
 	
 }
 
